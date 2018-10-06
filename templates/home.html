@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!--Section: Post v.1-->
+    <section class="wow fadeIn">
+
+        <!--Section heading-->
+        <h2 class="h1 text-center my-5 font-weight-bold">NewsFeed</h2>
+
+        <!--Grid row-->
+        <div class="row text-left">
+
+        {% for post in posts %}
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12">
+
+                <!--Image-->
+                <div class="view overlay rounded z-depth-1-half mb-3">
+                    <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="img-fluid" alt="Sample post image">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!--Excerpt-->
+                <div class="news-data">
+                    <a href="" class="light-blue-text">
+                        <h6>
+                            <i class="fa fa-plane"></i>
+                            <strong> Travels</strong>
+                        </h6>
+                    </a>
+                    <p>
+                        <strong>
+                            <i class="fa fa-user"></i> {{ post.author }} |
+                            <i class="fa fa-clock-o"></i> {{ post.post_date }}
+                        </strong>
+                    </p>
+                </div>
+                <h3><a><strong>{{ post.title }}</strong></a></h3>
+                <p>{{ post.content }}</p>
+
+                <!--/Featured news-->
+
+                <hr>
+
+                <!--Small news-->
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!--Image-->
+                        <div class="view overlay rounded z-depth-1">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--Excerpt-->
+                    <div class="col-md-9">
+                        <p class="dark-grey-text">
+                            <strong>19/08/2018</strong>
+                        </p>
+                        <a>Lorem ipsum dolor sit amet
+                            <i class="fa fa-angle-right float-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!--/Small news-->
+
+                <hr>
+
+                <!--Small news-->
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!--Image-->
+                        <div class="view overlay rounded z-depth-1">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="img-fluid" alt="Minor sample post image">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--Excerpt-->
+                    <div class="col-md-9">
+                        <p class="dark-grey-text">
+                            <strong>18/08/2018</strong>
+                        </p>
+                        <a>Soluta nobis est eligendi
+                            <i class="fa fa-angle-right float-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!--/Small news-->
+
+                <hr>
+
+                <!--Small news-->
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!--Image-->
+                        <div class="view overlay rounded z-depth-1">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="Minor sample post image">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--Excerpt-->
+                    <div class="col-md-9">
+                        <p class="dark-grey-text">
+                            <strong>17/08/2018</strong>
+                        </p>
+                        <a>Voluptatem accusantium doloremque
+                            <i class="fa fa-angle-right float-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!--/Small news-->
+
+            </div>
+            <!--Grid column-->
+
+        {% endfor %}
+
+        </div>
+        <!--Grid row-->
+
+    </section>
+    <!--/Section: Post v.1-->
+
+{% endblock content %}

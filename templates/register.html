@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+   <!-- Default form register -->
+    <form method="POST" action="" class="text-center border border-light p-5">
+        {{ form.hidden_tag() }}
+
+        <p class="h4 mb-4">Sign up</p>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- Username -->
+                {{ form.username.label(class="form-control-label") }}
+                {{ form.username(class="form-control") }}
+            </div>
+        </div>
+
+        <!-- E-mail -->
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- Username -->
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control") }}
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-row mb-4">
+            <div class="col">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(class="form-control") }}
+            </div>
+        </div>
+
+        <!-- Confirm password -->
+        <div class="form-row mb-4">
+            <div class="col">
+                {{ form.confirm_password.label(class="form-control-label") }}
+                {{ form.confirm_password(class="form-control") }}
+            </div>
+        </div>
+
+        <!-- Sign up button -->
+        {{ form.submit(class="btn btn-info my-4 btn-block") }}
+
+        <!-- Register -->
+        <p>Already a member?
+            <a href="{{ url_for('login') }}">Login</a>
+        </p>
+
+        <!-- Social register -->
+        <p>or sign up with:</p>
+
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-linkedin"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-github"></i>
+        </a>
+
+        <hr>
+
+        <!-- Terms of service -->
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a> and
+            <a href="" target="_blank">terms of service</a>. </p>
+
+    </form>
+    <!-- Default form register -->
+
+{% endblock content %}

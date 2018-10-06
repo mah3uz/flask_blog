@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!-- Default form login -->
+    <form method="POST" action="" class="text-center border border-light p-5">
+        {{ form.hidden_tag() }}
+
+        <p class="h4 mb-4">Sign in</p>
+
+        <!-- Email -->
+        {{ form.email.label(class="form-control-label") }}
+        {{ form.email(class="form-control mb-4") }}
+
+        <!-- Password -->
+        {{ form.password.label(class="form-control-label") }}
+        {{ form.password(class="form-control mb-4") }}
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <div class="custom-control custom-checkbox">
+                    {{ form.remember(class="custom-control-input") }}
+                    {{ form.remember.label(class="custom-control-label") }}
+                </div>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        {{ form.submit(class="btn btn-info btn-block my-4") }}
+
+        <!-- Register -->
+        <p>Not a member?
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+
+        <!-- Social login -->
+        <p>or sign in with:</p>
+
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-linkedin"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fa fa-github"></i>
+        </a>
+
+    </form>
+    <!-- Default form login -->
+
+{% endblock content %}
