@@ -3,7 +3,7 @@
 {% block content %}
 
    <!-- Default form register -->
-    <form method="POST" action="" class="text-center border border-light p-5">
+    <form method="POST" action="" class="border border-light p-5">
         {{ form.hidden_tag() }}
 
         <p class="h4 mb-4">Sign up</p>
@@ -83,7 +83,7 @@
         </div>
 
         <!-- Sign up button -->
-        {{ form.submit(class="btn btn-info my-4 btn-block") }}
+        {{ form.submit(class="btn btn-info my-4") }}
 
         <!-- Register -->
         <p>Already a member?
