@@ -1,60 +1,52 @@
 {% extends "layout.html" %}
-
 {% block content %}
-
-    <!-- Default form login -->
-    <form method="POST" action="" class="text-center border border-light p-5">
-        {{ form.hidden_tag() }}
-
-        <p class="h4 mb-4">Sign in</p>
-
-        <!-- Email -->
-        {{ form.email.label(class="form-control-label") }}
-        {{ form.email(class="form-control mb-4") }}
-
-        <!-- Password -->
-        {{ form.password.label(class="form-control-label") }}
-        {{ form.password(class="form-control mb-4") }}
-
-        <div class="d-flex justify-content-around">
-            <div>
-                <!-- Remember me -->
-                <div class="custom-control custom-checkbox">
-                    {{ form.remember(class="custom-control-input") }}
-                    {{ form.remember.label(class="custom-control-label") }}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
             </div>
-            <div>
-                <!-- Forgot password -->
-                <a href="">Forgot password?</a>
-            </div>
-        </div>
-
-        <!-- Sign in button -->
-        {{ form.submit(class="btn btn-info btn-block my-4") }}
-
-        <!-- Register -->
-        <p>Not a member?
-            <a href="{{ url_for('register') }}">Register</a>
-        </p>
-
-        <!-- Social login -->
-        <p>or sign in with:</p>
-
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-linkedin"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-github"></i>
-        </a>
-
-    </form>
-    <!-- Default form login -->
-
+            <small class="text-muted ml-2">
+                <a href="#">Forgot Password?</a>
+            </small>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+        </small>
+    </div>
 {% endblock content %}

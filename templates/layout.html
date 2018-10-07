@@ -87,8 +87,52 @@
     <!--Main layout-->
     <main class="mt-5 pt-5">
         <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    {% block content %}{% endblock %}
+                </div>
+
+                <div class="col-lg-4 col-md-4 sidebar">
+                    <div class="list-group">
+                        <span href="#" class="list-group-item active">
+                            Sidebar
+                            <span class="pull-right" id="slide-submenu">
+                                <i class="fa fa-times"></i>
+                            </span>
+                        </span>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment-o"></i> Lorem ipsum
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-search"></i> Lorem ipsum
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-user"></i> Lorem ipsum
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-folder-open-o"></i> Lorem ipsum <span class="badge badge-success">14</span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-bar-chart-o"></i> Lorem ipsumr <span class="badge badge-warning">14</span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-envelope"></i> Lorem ipsum
+                        </a>
+                    </div>
+                </div> <!-- /sidebar -->
+            </div> <!-- /row -->
+
+        </div> <!-- /container -->
     </main>
     <!--Main layout-->
 

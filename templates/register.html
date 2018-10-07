@@ -7,12 +7,23 @@
         {{ form.hidden_tag() }}
 
         <p class="h4 mb-4">Sign up</p>
+        <hr class="my-2">
 
         <div class="form-row mb-4">
             <div class="col">
                 <!-- Username -->
                 {{ form.username.label(class="form-control-label") }}
-                {{ form.username(class="form-control") }}
+
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="form-control") }}
+                {% endif %}
             </div>
         </div>
 
@@ -21,7 +32,17 @@
             <div class="col">
                 <!-- Username -->
                 {{ form.email.label(class="form-control-label") }}
-                {{ form.email(class="form-control") }}
+
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control") }}
+                {% endif %}
             </div>
         </div>
 
@@ -29,7 +50,17 @@
         <div class="form-row mb-4">
             <div class="col">
                 {{ form.password.label(class="form-control-label") }}
-                {{ form.password(class="form-control") }}
+
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
             </div>
         </div>
 
@@ -37,7 +68,17 @@
         <div class="form-row mb-4">
             <div class="col">
                 {{ form.confirm_password.label(class="form-control-label") }}
-                {{ form.confirm_password(class="form-control") }}
+
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.confirm_password(class="form-control") }}
+                {% endif %}
             </div>
         </div>
 
@@ -48,24 +89,6 @@
         <p>Already a member?
             <a href="{{ url_for('login') }}">Login</a>
         </p>
-
-        <!-- Social register -->
-        <p>or sign up with:</p>
-
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-linkedin"></i>
-        </a>
-        <a type="button" class="light-blue-text mx-2">
-            <i class="fa fa-github"></i>
-        </a>
-
-        <hr>
 
         <!-- Terms of service -->
         <p>By clicking
