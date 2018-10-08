@@ -2,6 +2,85 @@
 
 {% block content %}
 
-    <h1>{{ current_user.username }}</h1>
+    <!-- Update Account Modal -->
+    <div class="modal fade" id="modalUpdateAccountForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="{{ user_img }}" alt="avatar" class="rounded-circle img-responsive">
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa fa-user prefix grey-text"></i>
+                            <!-- Username -->
+                            {{ form.username.label(class="form-control-label") }}
+
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <!-- Email -->
+                            {{ form.email.label(class="form-control-label") }}
+
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class="form-control") }}
+                            {% endif %}
+                        </div>
+
+                        {# <div class="md-form mb-4">
+                            <i class="fa fa-lock prefix grey-text"></i>
+                            <input type="password" id="orangeForm-pass" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                        </div> #}
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        {{ form.submit(class="btn btn-info my-4") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Update Account Modal -->
+
+    <div class="account-section my-5">
+        <div class="card">
+            <div class="box">
+                <div class="img">
+                    <img src="{{ user_img }}">
+                </div>
+                <h2>{{ current_user.username }}<br><span>{{ current_user.email }}</span></h2>
+                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalUpdateAccountForm">Update Account</a>
+                <span>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}
