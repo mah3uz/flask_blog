@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" sizes="16x16" type="image/png">
 
     {% if title %}
         <title>Flask Blog - {{ title }}</title>
@@ -31,7 +32,7 @@
 
                 <!-- Brand -->
                 <a href="{{ url_for('home') }}" class="navbar-brand waves-effect">
-                    <strong class="blue-text">mah3uz-IT</strong>
+                    <strong class="blue-text">mah3uz - IT</strong>
                 </a>
 
                 <!-- Collapse -->
@@ -45,25 +46,30 @@
 
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item mr-2 active">
                             <a href="{{ url_for('home') }}" class="nav-link waves-effect" href="#">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item mr-2">
                             <a class="nav-link waves-effect" href="{{ url_for('about') }}">About</a>
                         </li>
-                    </ul>
-
-                    <!-- Right -->
-                    <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item mr-2">
                             <a href="https://github.com/mah3uz" class="nav-link border border-light rounded waves-effect"
                                 target="_blank">
                                 <i class="fa fa-github mr-2"></i>GitHub
                             </a>
                         </li>
+                    </ul>
+
+                    <!-- Right -->
+                    <ul class="navbar-nav nav-flex-icons">
                         {% if current_user.is_authenticated %}
+                            <li class="nav-item mr-2">
+                                <a href="{{ url_for('new_post') }}" class="nav-link border border-light rounded waves-effect">
+                                    <i class="fa fa-pencil mr-2"></i>New Post
+                                </a>
+                            </li>
                             <li class="nav-item mr-2">
                                 <a href="{{ url_for('account') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-sign-out mr-2"></i>Account

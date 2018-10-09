@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!-- Section: form gradient -->
+    <section class="form-gradient mb-5">
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <!--Form with header-->
+        <div class="new-post">
+
+            <!--Header-->
+            <div class="header peach-gradient">
+
+                <div class="row d-flex justify-content-center">
+                    <h3 class="white-text mb-0 py-2 font-weight-bold">New Post</h3>
+                </div>
+
+            </div>
+            <!--Header-->
+
+            <div class="post-body mx-4">
+
+                <div class="md-form my-5">
+                    <i class="fa fa-tag prefix grey-text"></i>
+                    {{ form.title.label(class="form-control-label") }}
+
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    {{ form.content.label(class="form-control-label") }}
+
+                    {% if form.content.errors %}
+                        {{ form.content(class="form-control post-text is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.content(class="md-textarea form-control", rows="10") }}
+                    {% endif %}
+                </div>
+
+                {{ form.submit(class="btn btn-outline-success z-depth-1a pull-right") }}
+            </div>
+
+        </div>
+        <!--/Form with header-->
+
+    </form>
+
+    </section>
+    <!-- Section: form gradient -->
+
+{% endblock content %}
