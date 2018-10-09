@@ -5,7 +5,7 @@
     <!-- Update Account Modal -->
     <div class="modal fade" id="modalUpdateAccountForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
-            <form method="POST" action="">
+            <form method="POST" action="" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -45,11 +45,16 @@
                             {% endif %}
                         </div>
 
-                        {# <div class="md-form mb-4">
-                            <i class="fa fa-lock prefix grey-text"></i>
-                            <input type="password" id="orangeForm-pass" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
-                        </div> #}
+                        <div class="mb-4">
+                            <i class="fa fa-image prefix grey-text"></i>
+                            {{ form.image.label(class='form-control-label') }}
+                            {{ form.image(class="form-control-file") }}
+                            {% if form.image.errors %}
+                                {% for error in form.image.errors %}
+                                    <span class="badge badge-danger">{{ error }}</span><br>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">

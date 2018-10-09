@@ -1,9 +1,18 @@
+import os
+import secrets
+from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flaskblog.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
 
+
+PROFILE_PIC_PATH = 'static/images/profile_pics'
+POST_PIC_PATH = 'static/images/post_pics'
+PROFILE_PIC_SIZE = (125, 125)
+POST_THUMB_SIZE = (225, 150)
+POST_IMG_SIZE = (500, 300)
 
 posts = [
     {
@@ -20,10 +29,25 @@ posts = [
     }
 ]
 
+
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html', posts=posts)
+
+def image_upload(image, path, size):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(image.filename)
+    image_name = random_hex + f_ext
+    image_path = os.path.join(app.root_path, path, image_name)
+
+    # Resize uploaded image
+    i = Image.open(image)
+    i.thumbnail(size)
+    i.save(image_path)
+
+    return image_name
+
 
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -31,6 +55,10 @@ def account():
     form = UpdateAccountForm()
 
     if form.validate_on_submit():
+        if form.image.data:
+            profile_image = image_upload(form.image.data, PROFILE_PIC_PATH, PROFILE_PIC_SIZE)
+            current_user.image_file = profile_image
+
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -48,9 +76,11 @@ def account():
                            form=form,
                            user_img=user_img)
 
+
 @app.route("/about")
 def about():
     return render_template('about.html', title='About')
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -71,6 +101,7 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -96,4 +127,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
 
