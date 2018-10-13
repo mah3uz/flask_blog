@@ -19,12 +19,14 @@
 
             <!-- Post title -->
             <h3 class="font-weight-bold mb-3"><a href="{{ url_for('post', post_id=post.id) }}"><strong>{{ post.title }}</strong></a></h3>
-            <!-- Category -->
-            <a href="#!" class="green-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-code pr-2"></i>Code</h6></a>
+            <!-- Post metadata -->
+            <div class="post-metadata mb-2">
+                <a href="#!" class="green-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-code pr-2"></i>Code</h6></a>
+                <a class="badge badge-success"> by: <strong>{{ post.author.username }}</strong></a> 
+                <a class="badge badge-warning" href="#!"> on: <span >{{ post.post_date.strftime('%d %B, %Y') }}</span></a>
+            </div>
             <!-- Excerpt -->
             <p>{{ post.content[:500] }}</p>
-            <!-- Post data -->
-            <p>by: <a class="badge badge-success"><strong>{{ post.author.username }}</strong></a> on: <span class="badge badge-warning">{{ post.post_date.strftime('%d %B, %Y') }}</span></p>
             <!-- Read more button -->
             <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-outline-success btn-md pull-right">Read more</a>
 

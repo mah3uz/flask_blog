@@ -28,7 +28,20 @@
               <!-- Title -->
               <h2 class="font-weight-bold">{{ post.title }}</h2>
               <!-- Data -->
-              <p>by: <a class="badge badge-success"><strong>{{ post.author.username }}</strong></a> on: <span class="badge badge-warning">{{ post.post_date.strftime('%d %B, %Y') }}</span></p>
+              <div class="post-metadata">
+                  <p>by: 
+                    <a class="badge badge-success">
+                      <strong>{{ post.author.username }}</strong>
+                    </a> on: 
+                    <span class="badge badge-warning">{{ post.post_date.strftime('%d %B, %Y') }}</span>
+                  </p>
+                  {% if post.author == current_user %}
+                    <span>
+                        <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn btn-success btn-sm m-1">Update</a>
+                        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deletePostModal">Delete</button>
+                    </span>
+                  {% endif %}
+              </div>
               <!-- Social shares -->
               <div class="social-counters">
                 <!-- Facebook -->
@@ -78,5 +91,25 @@
 
     </section>
     <!-- Section: Blog v.4 -->
+
+    <!-- Delete Post Modal -->
+    <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deletePostModalLabel">Do you really want to Delete this post?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+                <input type="submit" class="btn btn-md btn-danger" value="Delete">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 {% endblock content %}
