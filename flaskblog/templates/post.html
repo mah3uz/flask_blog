@@ -30,7 +30,7 @@
               <!-- Data -->
               <div class="post-metadata">
                   <p>by: 
-                    <a class="badge badge-success">
+                    <a href="{{ url_for('user_posts', username=post.author.username) }}" class="badge badge-success">
                       <strong>{{ post.author.username }}</strong>
                     </a> on: 
                     <span class="badge badge-warning">{{ post.post_date.strftime('%d %B, %Y') }}</span>

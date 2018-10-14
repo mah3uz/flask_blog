@@ -18,7 +18,8 @@ POST_IMG_SIZE = (500, 300)
 @app.route("/")
 @app.route("/home")
 def home():
-    posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.post_date.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', posts=posts)
 
 
@@ -105,7 +106,8 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
-            flash(f'Login Unsuccessful. Please check email and password.', 'danger')
+            flash(f'Login Unsuccessful. \
+                  Please check email and password.', 'danger')
 
     return render_template('login.html', title='Login', form=form)
 
@@ -128,7 +130,8 @@ def new_post():
         db.session.commit()
         flash('Your Post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_post.html', title='New Post', form=form, legend='New Post')
+    return render_template('create_post.html', title='New Post',
+                           form=form, legend='New Post')
 
 
 @app.route("/post/<int:post_id>", methods=['GET', 'POST'])
@@ -176,8 +179,14 @@ def delete_post(post_id):
     return redirect(url_for('home'))
 
 
-
-
+@app.route("/user/<string:username>")
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user)\
+            .order_by(Post.post_date.desc())\
+            .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', user=user, posts=posts)
 
 
 
