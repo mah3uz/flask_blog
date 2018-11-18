@@ -31,7 +31,7 @@
             <div class="container">
 
                 <!-- Brand -->
-                <a href="{{ url_for('home') }}" class="navbar-brand waves-effect">
+                <a href="{{ url_for('main.home') }}" class="navbar-brand waves-effect">
                     <strong class="blue-text">mah3uz - IT</strong>
                 </a>
 
@@ -47,12 +47,12 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item mr-2 active">
-                            <a href="{{ url_for('home') }}" class="nav-link waves-effect">Home
+                            <a href="{{ url_for('main.home') }}" class="nav-link waves-effect">Home
                                 <!-- <span class="sr-only">(current)</span> -->
                             </a>
                         </li>
                         <li class="nav-item mr-2">
-                            <a class="nav-link waves-effect" href="{{ url_for('about') }}">About</a>
+                            <a class="nav-link waves-effect" href="{{ url_for('main.about') }}">About</a>
                         </li>
                         <li class="nav-item mr-2">
                             <a href="https://github.com/mah3uz" class="nav-link border border-light rounded waves-effect"
@@ -66,28 +66,28 @@
                     <ul class="navbar-nav nav-flex-icons">
                         {% if current_user.is_authenticated %}
                             <li class="nav-item mr-2">
-                                <a href="{{ url_for('new_post') }}" class="nav-link border border-light rounded waves-effect">
+                                <a href="{{ url_for('posts.new_post') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-pencil mr-2"></i>New Post
                                 </a>
                             </li>
                             <li class="nav-item mr-2">
-                                <a href="{{ url_for('account') }}" class="nav-link border border-light rounded waves-effect">
+                                <a href="{{ url_for('users.account') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-sign-out mr-2"></i>Account
                                 </a>
                             </li>
                             <li class="nav-item mr-2">
-                                <a href="{{ url_for('logout') }}" class="nav-link border border-light rounded waves-effect">
+                                <a href="{{ url_for('users.logout') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-sign-out mr-2"></i>Logout
                                 </a>
                             </li>
                         {% else %}
                             <li class="nav-item mr-2">
-                                <a href="{{ url_for('register') }}" class="nav-link border border-light rounded waves-effect">
+                                <a href="{{ url_for('users.register') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-user-plus mr-2"></i></i>Register
                                 </a>
                             </li>
                             <li class="nav-item mr-2">
-                                <a href="{{ url_for('login') }}" class="nav-link border border-light rounded waves-effect">
+                                <a href="{{ url_for('users.login') }}" class="nav-link border border-light rounded waves-effect">
                                     <i class="fa fa-sign-in mr-2"></i>Login
                                 </a>
                             </li>

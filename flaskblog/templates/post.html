@@ -30,14 +30,14 @@
               <!-- Data -->
               <div class="post-metadata">
                   <p>by: 
-                    <a href="{{ url_for('user_posts', username=post.author.username) }}" class="badge badge-success">
+                    <a href="{{ url_for('users.user_posts', username=post.author.username) }}" class="badge badge-success">
                       <strong>{{ post.author.username }}</strong>
                     </a> on: 
                     <span class="badge badge-warning">{{ post.post_date.strftime('%d %B, %Y') }}</span>
                   </p>
                   {% if post.author == current_user %}
                     <span>
-                        <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn btn-success btn-sm m-1">Update</a>
+                        <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-success btn-sm m-1">Update</a>
                         <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deletePostModal">Delete</button>
                     </span>
                   {% endif %}
@@ -104,7 +104,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+              <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
                 <input type="submit" class="btn btn-md btn-danger" value="Delete">
               </form>
             </div>

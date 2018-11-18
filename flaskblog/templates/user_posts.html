@@ -20,17 +20,17 @@
         <div class="col-lg-12">
 
             <!-- Post title -->
-            <h3 class="font-weight-bold mb-3"><a href="{{ url_for('post', post_id=post.id) }}"><strong>{{ post.title }}</strong></a></h3>
+            <h3 class="font-weight-bold mb-3"><a href="{{ url_for('posts.post', post_id=post.id) }}"><strong>{{ post.title }}</strong></a></h3>
             <!-- Post metadata -->
             <div class="post-metadata mb-2">
                 <a href="#!" class="green-text"><h6 class="font-weight-bold mb-3"><i class="fa fa-code pr-2"></i>Code</h6></a>
-                <a href="{{ url_for('user_posts', username=post.author.username) }}" class="badge badge-success"> by: <strong>{{ post.author.username }}</strong></a> 
+                <a href="{{ url_for('users.user_posts', username=post.author.username) }}" class="badge badge-success"> by: <strong>{{ post.author.username }}</strong></a>
                 <a class="badge badge-warning" href="#!"> on: <span >{{ post.post_date.strftime('%d %B, %Y') }}</span></a>
             </div>
             <!-- Excerpt -->
             <p>{{ post.content[:500] }}</p>
             <!-- Read more button -->
-            <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-outline-success btn-md pull-right">Read more</a>
+            <a href="{{ url_for('posts.post', post_id=post.id) }}" class="btn btn-outline-success btn-md pull-right">Read more</a>
 
         </div>
         <!-- Grid column -->
@@ -45,9 +45,9 @@
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
-                <a class="btn btn-info btn-sm mb-4" href="{{ url_for('user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+                <a class="btn btn-info btn-sm mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
             {% else %}
-                <a class="btn btn-outline-info btn-sm mb-4" href="{{ url_for('user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+                <a class="btn btn-outline-info btn-sm mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
             {% endif %}
         {% else %}
             ...
